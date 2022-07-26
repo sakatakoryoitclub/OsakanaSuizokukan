@@ -81,24 +81,24 @@ public class PassScan : MonoBehaviour {
 		if (File.Exists(path))
 		{
 			//byte取得
-			FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-			BinaryReader bin = new BinaryReader(fileStream);
-			byte[] readBinary = bin.ReadBytes((int)bin.BaseStream.Length);
+			var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+			var bin = new BinaryReader(fileStream);
+			var readBinary = bin.ReadBytes((int)bin.BaseStream.Length);
 			bin.Close();
 			fileStream.Dispose();
 			fileStream = null;
 			if (readBinary != null)
 			{
 				//横サイズ
-				int pos = 16;
-				int width = 0;
-				for (int i = 0; i < 4; i++)
+				var pos = 16;
+				var width = 0;
+				for (var i = 0; i < 4; i++)
 				{
 					width = width * 256 + readBinary[pos++];
 				}
 				//縦サイズ
-				int height = 0;
-				for (int i = 0; i < 4; i++)
+				var height = 0;
+				for (var i = 0; i < 4; i++)
 				{
 					height = height * 256 + readBinary[pos++];
 				}

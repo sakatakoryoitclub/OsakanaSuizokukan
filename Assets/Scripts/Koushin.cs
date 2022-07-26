@@ -12,7 +12,7 @@ public class Koushin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		System.IO.FileInfo fi = new System.IO.FileInfo(@"Y:\01共有フォルダ\20_各部活動\ITサイエンス部\20-Unity班\New Unity Project\Assets\mudai.png");
+		var fi = new System.IO.FileInfo(@"Y:\01共有フォルダ\20_各部活動\ITサイエンス部\20-Unity班\New Unity Project\Assets\mudai.png");
 		Timing = fi.LastWriteTime.ToString();
 		if (Timed == null) {
 			Timed = Timing;

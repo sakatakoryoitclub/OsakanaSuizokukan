@@ -7,9 +7,9 @@ public class MultiCameras : MonoBehaviour
 
 	private void Awake()
 	{
-		int count   = Mathf.Min( Display.displays.Length, m_useDisplayCount );
+		var count   = Mathf.Min( Display.displays.Length, m_useDisplayCount );
 
-		for( int i = 0; i < count; ++i )
+		for( var i = 0; i < count; ++i )
 		{
 			Display.displays[ i ].Activate();
 		}
