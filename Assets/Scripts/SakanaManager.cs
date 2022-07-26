@@ -14,33 +14,15 @@ public class SakanaManager : MonoBehaviour
 	/// 魚のSpriteRendererをまとめる配列 設定しない場合はManagerの子オブジェクトから取得する
 	/// </summary>
 	[SerializeField] private SpriteRenderer[] sakanaImages;
-	
-	/// <summary>
-	/// 画像のPath(Ex: C://SakanaImg/sakana10.png の場合は C://SakanaImg/sakana まで入力
-	/// </summary>
-	[SerializeField] private string imagePath;
-	
-	/// <summary>
-	/// 拡張子
-	/// </summary>
-	[SerializeField] private Extentions extention;
-	
-	/// <summary>
-	/// リロードに使用するキー (オプション) 
-	/// </summary>
-	[SerializeField] private KeyCode reloadKey;
-	
-	/// <summary>
-	/// 画像の更新のクールダウンタイム
-	/// </summary>
-	[SerializeField] private float coolDownTime = 30f;
 
-	
 	/// <summary>
 	/// 初期化処理をまとめてする
 	/// </summary>
 	private void Start()
 	{
+		//ウィンドウサイズを変更
+		Screen.SetResolution( SettingData.WidthResolution, SettingData.HeightResolution ,SettingData.IsFullScreen, 60);
+		
 		//sakanaImagesの中にちゃんと値が入っているか？
 		if (sakanaImages.Count(img => img != null) == 0)
 		{
@@ -68,14 +50,14 @@ public class SakanaManager : MonoBehaviour
 		while (Application.isPlaying)
 		{
 			//それぞれの画像Path
-			string imgPath = imagePath + n + "." + extention.ToString();
-			
+			string imgPath = SettingData.GetFullPath(n);
+
 			//画像の最終更新時間を取得
 			var lastTime = new FileInfo(imgPath).LastWriteTime;
-			
+
 			//Http通信で画像を取得するやつ (Texture限定 Audio用とかもある)
 			var request = UnityWebRequestTexture.GetTexture("file://" + imgPath);
-			
+
 			//Http通信が終わるまで待つ
 			yield return request.SendWebRequest();
 
@@ -86,20 +68,23 @@ public class SakanaManager : MonoBehaviour
 				//Whileからやり直し
 				continue;
 			}
-			
+
 			//通信結果からテクスチャを取得
 			Texture2D tex = ((DownloadHandlerTexture) request.downloadHandler).texture;
-			
+
 			//Texture2DからSpriteに変換して、Sakanaのオブジェクトに代入
 			sakana.sprite = SpriteFromTexture2D(tex);
-			
+
 			//クールタイムが終わるまで待機
-			yield return new WaitForSeconds(coolDownTime);
+			yield return new WaitForSeconds(SettingData.CoolTime);
 
 			//画像ファイルの更新じくが変化するまで待機
 			yield return new WaitWhile(() => lastTime.Equals(new FileInfo(imgPath).LastWriteTime));
 
-			//yield return new WaitUntil(() => Input.GetKeyDown(reloadKey));
+			if (SettingData.UseKeyReload)
+			{
+				yield return new WaitUntil(() => Input.GetKeyDown(SettingData.ReloadKeyCode));
+			}
 		}
 	}
 
@@ -114,7 +99,7 @@ public class SakanaManager : MonoBehaviour
 		if (texture)
 		{
 			//Texture2DからSprite作成
-			sprite = Sprite.Create(texture, new UnityEngine.Rect(0, 0, texture.width, texture.height), Vector2.zero);
+			sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
 		}
 
 		return sprite;

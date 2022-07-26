@@ -12,7 +12,7 @@ public class PixelCtrl{
 	static void OnRuntimeMethodLoad()
 {
 
-			Screen.SetResolution( 3250, 1080, false, 60);
+			//Screen.SetResolution( 3250, 1080, false, 60);
 
 
 	}
