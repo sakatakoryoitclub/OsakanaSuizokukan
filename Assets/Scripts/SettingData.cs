@@ -1,8 +1,6 @@
-﻿
+﻿using UnityEngine;
 
-using UnityEngine;
-
-public static class SettingData
+public class SettingData
 {
 	# region Path周り
 	

@@ -13,12 +13,12 @@ public class SakanaManager : MonoBehaviour
 	/// <summary>
 	/// 魚のSpriteRendererをまとめる配列 設定しない場合はManagerの子オブジェクトから取得する
 	/// </summary>
-	[SerializeField] private SpriteRenderer[] sakanaImages;
+	[SerializeField] public SpriteRenderer[] sakanaImages;
 
 	/// <summary>
 	/// 初期化処理をまとめてする
 	/// </summary>
-	private void Start()
+	public void Start()
 	{
 		//ウィンドウサイズを変更
 		Screen.SetResolution( SettingData.WidthResolution, SettingData.HeightResolution ,SettingData.IsFullScreen, 60);
@@ -44,7 +44,7 @@ public class SakanaManager : MonoBehaviour
 	/// <param name="sakana">魚のSpriteRenderer</param>
 	/// <param name="n">魚の番号 (1～)</param>
 	/// <returns></returns>
-	private IEnumerator ImageProcess(SpriteRenderer sakana, int n)
+	public IEnumerator ImageProcess(SpriteRenderer sakana, int n)
 	{
 		//実行中はずっと以下の処理を実行
 		while (Application.isPlaying)
@@ -93,7 +93,7 @@ public class SakanaManager : MonoBehaviour
 	/// </summary>
 	/// <param name="texture">変換対象のTexture</param>
 	/// <returns>Textureから変換されたSprite</returns>
-	private static Sprite SpriteFromTexture2D(Texture2D texture)
+	public static Sprite SpriteFromTexture2D(Texture2D texture)
 	{
 		Sprite sprite = null;
 		if (texture)

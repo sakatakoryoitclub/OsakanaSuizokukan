@@ -14,7 +14,7 @@ public class CanvasSampleOpenFileText : MonoBehaviour, IPointerDownHandler {
     // WebGL
     //
     [DllImport("__Internal")]
-    private static extern void UploadFile(string gameObjectName, string methodName, string filter, bool multiple);
+    public static extern void UploadFile(string gameObjectName, string methodName, string filter, bool multiple);
 
     public void OnPointerDown(PointerEventData eventData) {
         UploadFile(gameObject.name, "OnFileUpload", ".txt", false);
@@ -35,7 +35,7 @@ public class CanvasSampleOpenFileText : MonoBehaviour, IPointerDownHandler {
         button.onClick.AddListener(OnClick);
     }
 
-    private void OnClick() {
+    public void OnClick() {
         var paths = StandaloneFileBrowser.OpenFilePanel("Title", "", "txt", false);
         if (paths.Length > 0) {
             StartCoroutine(OutputRoutine(new System.Uri(paths[0]).AbsoluteUri));
@@ -43,7 +43,7 @@ public class CanvasSampleOpenFileText : MonoBehaviour, IPointerDownHandler {
     }
 #endif
 
-    private IEnumerator OutputRoutine(string url) {
+    public IEnumerator OutputRoutine(string url) {
         var loader = new UnityWebRequest(url);
         yield return loader.SendWebRequest();
         output.text = loader.downloadHandler.text;

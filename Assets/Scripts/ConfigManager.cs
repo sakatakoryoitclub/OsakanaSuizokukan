@@ -14,34 +14,34 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// 次のシーンに行くボタン
 	/// </summary>
-	[SerializeField] private Button startButton;
+	[SerializeField] public Button startButton;
 
 	/// <summary>
 	/// 次のシーンの名前
 	/// </summary>
-	[SerializeField] private string nextSceneName;
+	[SerializeField] public string nextSceneName;
 
 	# region Path周り
 
 	/// <summary>
 	/// ディレクトリを入力するInputField
 	/// </summary>
-	[SerializeField] private TMP_InputField pathInput;
+	[SerializeField] public TMP_InputField pathInput;
 
 	/// <summary>
 	/// エクスプローラーから検索するボタン
 	/// </summary>
-	[SerializeField] private Button pathChoiceButton;
+	[SerializeField] public Button pathChoiceButton;
 
 	/// <summary>
 	/// Prefix用のInputField
 	/// </summary>
-	[SerializeField] private TMP_InputField prefixInput;
+	[SerializeField] public TMP_InputField prefixInput;
 
 	/// <summary>
 	/// 拡張子を指定するドロップダウン
 	/// </summary>
-	[SerializeField] private TMP_Dropdown extentionDropdown;
+	[SerializeField] public TMP_Dropdown extentionDropdown;
 
 	# endregion
 
@@ -50,12 +50,12 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// クールタイムを設定するスライダー
 	/// </summary>
-	[SerializeField] private Slider coolTimeSlider;
+	[SerializeField] public Slider coolTimeSlider;
 
 	/// <summary>
 	/// クールタイムを設定するInputField
 	/// </summary>
-	[SerializeField] private TMP_InputField coolTimeInput;
+	[SerializeField] public TMP_InputField coolTimeInput;
 
 	# endregion
 
@@ -64,17 +64,17 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// 横幅解像度を設定するInputField
 	/// </summary>
-	[SerializeField] private TMP_InputField widthInput;
+	[SerializeField] public TMP_InputField widthInput;
 	
 	/// <summary>
 	/// 縦幅解像度を設定するInputField
 	/// </summary>
-	[SerializeField] private TMP_InputField heightInput;
+	[SerializeField] public TMP_InputField heightInput;
 	
 	/// <summary>
 	/// フルスクリーンかどうかを設定するトグル
 	/// </summary>
-	[SerializeField] private Toggle fullScreenToggle;
+	[SerializeField] public Toggle fullScreenToggle;
 
 	# endregion
 
@@ -83,19 +83,19 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// キーリロードするか、否かを設定するトグル
 	/// </summary>
-	[SerializeField] private Toggle keyReloadToggle;
+	[SerializeField] public Toggle keyReloadToggle;
 	
 	/// <summary>
 	/// キーリロードのトリガーとなるキーを設定するドロップダウン
 	/// </summary>
-	[SerializeField] private TMP_Dropdown reloadKeyDropdown;
+	[SerializeField] public TMP_Dropdown reloadKeyDropdown;
 
 	# endregion
 
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	private void Start()
+	public void Start()
 	{
 		//解像度をHDに設定 コンテンツ上映時の解像度だと設定画面が使いづらいであろうため
 		Screen.SetResolution(1280, 720, false, 60);
@@ -124,7 +124,7 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// Path周りのGUIの初期化
 	/// </summary>
-	private void PathInit()
+	public void PathInit()
 	{
 		//Choice ボタンが押されたときの処理
 		pathChoiceButton.onClick.AddListener(() =>
@@ -153,7 +153,7 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// クールタイム周りのGUIの初期設定
 	/// </summary>
-	private void CoolTimeInit()
+	public void CoolTimeInit()
 	{
 		//スライダーが変わったとき、InputFieldも同じ値に
 		coolTimeSlider.onValueChanged.AddListener(value => coolTimeInput.text = $"{value}");
@@ -168,7 +168,7 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// キーリロード周りのGUIの初期設定
 	/// </summary>
-	private void KeyReloadInit()
+	public void KeyReloadInit()
 	{
 		//キーリロードを使わないときはKeyCodeのドロップダウンを非表示
 		keyReloadToggle.onValueChanged.AddListener(active => reloadKeyDropdown.gameObject.SetActive(active));
@@ -187,7 +187,7 @@ public class ConfigManager : MonoBehaviour
 	/// <summary>
 	/// グローバルな設定インスタンスに値を設定
 	/// </summary>
-	private void SubmitSetting()
+	public void SubmitSetting()
 	{
 		//代入しているだけなので多分分かるはず　説明省略！
 		
