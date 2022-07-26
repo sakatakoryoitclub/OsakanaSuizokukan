@@ -4,17 +4,63 @@ using UnityEngine;
 using System.IO;
 using System;
 
+/// <summary>
+/// Sakana一つ一つに当てていたScript
+/// </summary>
 public class PassScan : MonoBehaviour {
 
+	/// <summary>
+	/// 魚の画像コンポーネント
+	/// </summary>
 	SpriteRenderer MainSpriteRenderer;
-	string Timed,Timing;
+	
+	/// <summary>
+	/// 魚の画像の最終更新時間？
+	/// </summary>
+	string Timed;
+	/// <summary>
+	/// Timedのtemp用変数？
+	/// </summary>
+	string	Timing;
+	
+	/// <summary>
+	/// 画像の通し番号(一つ一つ設定)
+	/// </summary>
 	public string Path;
+	
+	/// <summary>
+	/// 最終的なPath？
+	/// </summary>
 	string Pathh ;
+	
+	/// <summary>
+	/// クールダウン用のFrame
+	/// </summary>
 	public int Frame;
+	
+	/// <summary>
+	/// キーボードでリロードするか？
+	/// </summary>
 	public bool Keybord=false;
+	
+	/// <summary>
+	/// Fileの情報 (リロード時に利用)
+	/// </summary>
 	System.IO.FileInfo fi;
+	
+	/// <summary>
+	/// Texture2D
+	/// </summary>
 	Texture2D KDM;
+	
+	/// <summary>
+	/// 
+	/// </summary>
 	int count=0;
+	
+	/// <summary>
+	/// 
+	/// </summary>
 	Sprite FJI;
 	// Use this for initialization
 	void Start () {
